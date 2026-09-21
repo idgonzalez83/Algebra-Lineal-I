@@ -209,28 +209,77 @@
     de modo que cualquier potencia de \(i\) puede escribirse como:
 </p>
 \[
-1,\qquad -1, qquad i \qquad \text{o} \qquad -i
+1,\qquad -1, \qquad i \qquad \text{o} \qquad -i
 \]
 
 
 
     <!-- Ejemplo 1 -->
 
-    <div class="ejemplo">
+    <!-- Inicio del ejemplo 1 -->
+<div class="ejemplo">
 
-        <div class="ejemplo-title">Ejemplo 1</div>
+    <div class="ejemplo-title">Ejemplo 1</div>
+
+    <p>Reescriba como \(\pm 1\) o \(\pm i\):</p>
+
+    <!-- Enunciados de los ejercicios -->
+    <div class="ejercicios">
+        <div class="ejercicio">(a) \(i^{39}\)</div>
+        <div class="ejercicio">(b) \(i^{26}\)</div>
+    </div>
+
+    <!-- Solución de los ejercicios -->
+    <div class="solucion">
+
+        <h3>Solución</h3>
 
         <p>
-            Reescriba como \(\pm 1\) o \(\pm i\):
+            Las potencias de \(i\) se repiten cada cuatro exponentes:
         </p>
 
-        <div class="ejercicios">
-            <div class="ejercicio">(a) \(i^{39}\)</div>
-            <div class="ejercicio">(b) \(i^{26}\)</div>
+        \[
+            i^1=i,\qquad i^2=-1,\qquad i^3=-i,\qquad i^4=1.
+        \]
+
+        <p>
+            Para simplificar una potencia de \(i\), dividimos el
+            exponente entre 4 y usamos el residuo.
+        </p>
+
+        <div class="ejercicio">
+            <p><strong>(a) \(i^{39}\)</strong></p>
+
+            <p>
+                Como \(39=4\cdot 9+3\), el residuo es 3.
+                Por lo tanto:
+            </p>
+
+            \[
+                i^{39}=(i^4)^9\cdot i^3
+                =1\cdot(-i)=\boxed{-i}.
+            \]
+        </div>
+
+        <div class="ejercicio">
+            <p><strong>(b) \(i^{26}\)</strong></p>
+
+            <p>
+                Como \(26=4\cdot 6+2\), el residuo es 2.
+                Por lo tanto:
+            </p>
+
+            \[
+                i^{26}=(i^4)^6\cdot i^2
+                =1\cdot(-1)=\boxed{-1}.
+            \]
         </div>
 
     </div>
+    <!-- Fin de la solución -->
 
+</div>
+<!-- Fin del ejemplo 1 -->
 
     <p>
         Usaremos \(i\), la unidad imaginaria, para definir un nuevo
@@ -271,26 +320,19 @@
 
     <p>
         Si \(a\) es un número real, entonces podemos escribirlo como
-        el número complejo \(a+0i\). Como cualquier número real puede
+        el número complejo \(a+0i\). Es decir, cualquier número real puede
         escribirse en forma compleja, con parte imaginaria igual a
-        cero, concluimos que todos los números reales son números
-        complejos.
-    </p>
-
-    <p>
-        En otras palabras,
-    </p>
+        cero. En otras palabras: todos los números reales son números
+        complejos:
+        <\p>
 
     \[
     \mathbb{R}\subseteq\mathbb{C}.
     \]
 
     <p>
-        Si un número complejo no nulo no tiene parte real, es decir,
-        su parte real es cero, decimos que el número es
-        <strong>puramente imaginario</strong>.
-        Por ejemplo,
-        \(3i\), \(-4i\) e \(i\sqrt{5}\) son números puramente imaginarios.
+        Si un número complejo tiene su parte real igual a cero, decimos que es un
+        <strong>imaginario puro</strong>. Por ejemplo, \(3i\), \(-4i\) y \(\sqrt{5}i\) son imaginarios puros.
     </p>
 
 
