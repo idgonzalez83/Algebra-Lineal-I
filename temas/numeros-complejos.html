@@ -1,1 +1,489 @@
 
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Números Complejos | Álgebra Lineal I</title>
+
+    <!-- MathJax -->
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']]
+        }
+    };
+    </script>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            background-color: #f5f5f5;
+            color: #222;
+            line-height: 1.65;
+        }
+
+        header {
+            background-color: #1f3c5b;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #162d44;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 35px;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            color: #1f3c5b;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 7px;
+            margin-top: 35px;
+        }
+
+        h3 {
+            color: #1f3c5b;
+            margin-top: 30px;
+        }
+
+        /* Caja para definiciones */
+        .notabox {
+            background-color: #eef5fb;
+            border-left: 5px solid #1f3c5b;
+            padding: 18px 22px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+
+        .notabox-title {
+            font-weight: bold;
+            color: #1f3c5b;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        /* Caja para ejemplos */
+        .ejemplo {
+            background-color: #fafafa;
+            border: 1px solid #d8d8d8;
+            border-left: 5px solid #777;
+            padding: 18px 22px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+
+        .ejemplo-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Ejercicios en varias columnas */
+        .ejercicios {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px 30px;
+            margin-top: 12px;
+        }
+
+        .ejercicios.tres {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .ejercicio {
+            padding: 4px 0;
+        }
+
+        .volver {
+            display: inline-block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #1f3c5b;
+            font-weight: bold;
+        }
+
+        .volver:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+
+            .ejercicios,
+            .ejercicios.tres {
+                grid-template-columns: 1fr;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Números Complejos</h1>
+    <p>Álgebra Lineal I</p>
+</header>
+
+<nav>
+    <a href="../index.html">Inicio del curso</a>
+</nav>
+
+<main class="container">
+
+    <a class="volver" href="../index.html">← Volver al contenido del curso</a>
+
+    <h2>1. Números complejos</h2>
+
+    <p>
+        La unidad imaginaria, \(i\), se define como
+    </p>
+
+    \[
+    i^2 := -1
+    \qquad \text{o equivalentemente} \qquad
+    i=\sqrt{-1}.
+    \]
+
+    <p>
+        Dada esta definición, se tiene:
+    </p>
+
+    \[
+    i^2=-1,\qquad
+    i^3=-i,\qquad
+    i^4=1,\qquad
+    i^5=i,\qquad
+    i^6=-1,\ldots
+    \]
+
+    <p>
+        Observamos que este ciclo se repite cada cuatro potencias,
+        de modo que cualquier potencia de \(i\) puede escribirse como
+        \(1\), \(-1\), \(i\) o \(-i\).
+    </p>
+
+
+    <!-- Ejemplo 1 -->
+
+    <div class="ejemplo">
+
+        <div class="ejemplo-title">Ejemplo 1</div>
+
+        <p>
+            Reescriba como \(\pm 1\) o \(\pm i\):
+        </p>
+
+        <div class="ejercicios">
+            <div class="ejercicio">(a) \(i^{39}\)</div>
+            <div class="ejercicio">(b) \(i^{26}\)</div>
+        </div>
+
+    </div>
+
+
+    <p>
+        Usaremos \(i\), la unidad imaginaria, para definir un nuevo
+        tipo de número: el número complejo.
+    </p>
+
+
+    <!-- Definición -->
+
+    <div class="notabox">
+
+        <div class="notabox-title">Número complejo</div>
+
+        <p>
+            Un <strong>número complejo</strong> es un número que puede
+            escribirse en la forma
+        </p>
+
+        \[
+        a+bi,
+        \]
+
+        <p>
+            donde \(a\) y \(b\) son números reales e \(i\) es la
+            unidad imaginaria.
+        </p>
+
+    </div>
+
+
+    <p>
+        El número \(a\) se llama la <strong>parte real</strong> de
+        \(a+bi\) y el número \(b\) se llama la
+        <strong>parte imaginaria</strong> de \(a+bi\).
+        Por ejemplo, en el número complejo \(3+4i\), \(3\) es la
+        parte real y \(4\) es la parte imaginaria.
+    </p>
+
+    <p>
+        Si \(a\) es un número real, entonces podemos escribirlo como
+        el número complejo \(a+0i\). Como cualquier número real puede
+        escribirse en forma compleja, con parte imaginaria igual a
+        cero, concluimos que todos los números reales son números
+        complejos.
+    </p>
+
+    <p>
+        En otras palabras,
+    </p>
+
+    \[
+    \mathbb{R}\subseteq\mathbb{C}.
+    \]
+
+    <p>
+        Si un número complejo no nulo no tiene parte real, es decir,
+        su parte real es cero, decimos que el número es
+        <strong>puramente imaginario</strong>.
+        Por ejemplo,
+        \(3i\), \(-4i\) e \(i\sqrt{5}\) son números puramente imaginarios.
+    </p>
+
+
+    <!-- Ejemplo 2 -->
+
+    <div class="ejemplo">
+
+        <div class="ejemplo-title">Ejemplo 2</div>
+
+        <p>
+            Escriba lo siguiente en la forma \(a+bi\).
+        </p>
+
+        <div class="ejercicios tres">
+            <div class="ejercicio">(a) \(5+\sqrt{-16}\)</div>
+            <div class="ejercicio">(b) \(-5\)</div>
+            <div class="ejercicio">
+                (c) \(\displaystyle\frac{6-\sqrt{-3}}{2}\)
+            </div>
+        </div>
+
+    </div>
+
+
+    <h2>2. Operaciones con números complejos</h2>
+
+    <p>
+        La suma y multiplicación de números complejos son
+        relativamente sencillas.
+    </p>
+
+
+    <h3>Suma y resta</h3>
+
+    \[
+    (a+bi)\pm(c+di)
+    =
+    (a\pm c)+(b\pm d)i.
+    \]
+
+
+    <h3>Multiplicación</h3>
+
+    \[
+    \begin{aligned}
+    (a+bi)(c+di)
+        &=ac+(ad+bc)i+bdi^2\\
+        &=ac-bd+(ad+bc)i.
+    \end{aligned}
+    \]
+
+
+    <!-- Ejemplo 3 -->
+
+    <div class="ejemplo">
+
+        <div class="ejemplo-title">Ejemplo 3</div>
+
+        <p>Realice las operaciones.</p>
+
+        <div class="ejercicios">
+            <div class="ejercicio">
+                (a) \((3+4i)+(5-6i)\)
+            </div>
+
+            <div class="ejercicio">
+                (b) \((6+9i)-(3-2i)\)
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Ejemplo 4 -->
+
+    <div class="ejemplo">
+
+        <div class="ejemplo-title">Ejemplo 4</div>
+
+        <p>Realice las operaciones.</p>
+
+        <div class="ejercicios">
+
+            <div class="ejercicio">
+                (a) \((3+2i)(4-5i)\)
+            </div>
+
+            <div class="ejercicio">
+                (b) \((3-7i)^2\)
+            </div>
+
+            <div class="ejercicio">
+                (c) \((5-2i)(5+2i)\)
+            </div>
+
+            <div class="ejercicio">
+                (d) \((3+i)^2-2(3+i)\)
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <h2>3. Conjugado complejo</h2>
+
+    <p>
+        Observe que en el inciso (c) del Ejemplo 4, el producto de
+        los números complejos \(5-2i\) y \(5+2i\) produce el número
+        real \(29\).
+    </p>
+
+    <p>
+        Los números \(5-2i\) y \(5+2i\) son
+        <strong>conjugados complejos</strong> entre sí.
+        El conjugado complejo de \(a+bi\) es \(a-bi\) y,
+        recíprocamente, el conjugado complejo de \(a-bi\) es \(a+bi\).
+    </p>
+
+    <p>
+        En general, el producto de dos números complejos que son
+        conjugados entre sí da como resultado un número real:
+    </p>
+
+    \[
+    \begin{aligned}
+    (a+bi)(a-bi)
+        &=a^2-(bi)^2\\
+        &=a^2-b^2i^2\\
+        &=a^2+b^2.
+    \end{aligned}
+    \]
+
+
+    <h2>4. Cocientes de números complejos</h2>
+
+    <p>
+        Nuestro objetivo es expresar un cociente de números complejos
+        en la forma \(a+bi\).
+    </p>
+
+    <p>
+        Si tenemos un cociente entre un número complejo y un número
+        real, donde el número real es el divisor, expresar el cociente
+        en la forma \(a+bi\) es similar a dividir un polinomio entre
+        un monomio. Por ejemplo,
+    </p>
+
+    \[
+    \frac{6-5i}{2}
+    =
+    \frac{6}{2}-\frac{5i}{2}
+    =
+    3-\frac{5}{2}i.
+    \]
+
+    <p>
+        Teniendo en cuenta que \(i=\sqrt{-1}\) es una expresión
+        radical, veremos que las técnicas de racionalización usadas
+        con cocientes de radicales son útiles cuando se trabaja con
+        cocientes de números complejos en los que el divisor tiene
+        una parte imaginaria.
+    </p>
+
+
+    <!-- Ejemplo 5 -->
+
+    <div class="ejemplo">
+
+        <div class="ejemplo-title">Ejemplo 5</div>
+
+        <p>
+            Exprese lo siguiente en la forma \(a+bi\).
+        </p>
+
+        <div class="ejercicios">
+
+            <div class="ejercicio">
+                (a) \(\displaystyle\frac{4+3i}{2i}\)
+            </div>
+
+            <div class="ejercicio">
+                (b) \(\displaystyle\frac{7-4i}{2+i}\)
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+    Álgebra Lineal I
+</footer>
+
+</body>
+</html>
