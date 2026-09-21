@@ -1,0 +1,873 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistemas de Ecuaciones Lineales | Álgebra Lineal I</title>
+
+    <!-- MathJax -->
+    
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']]
+        }
+    };
+    </script>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            background-color: #f5f5f5;
+            color: #222;
+            line-height: 1.65;
+        }
+
+        header {
+            background-color: #1f3c5b;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #162d44;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 35px;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            color: #1f3c5b;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 7px;
+            margin-top: 35px;
+        }
+
+        h3 {
+            color: #1f3c5b;
+            margin-top: 30px;
+        }
+
+        /* Caja para definiciones */
+        .notabox {
+            background-color: #eef5fb;
+            border-left: 5px solid #1f3c5b;
+            padding: 18px 22px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+
+        .notabox-title {
+            font-weight: bold;
+            color: #1f3c5b;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        /* Caja para ejemplos */
+        .ejemplo {
+            background-color: #fafafa;
+            border: 1px solid #d8d8d8;
+            border-left: 5px solid #777;
+            padding: 18px 22px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+
+        .ejemplo-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Ejercicios en varias columnas */
+        .ejercicios {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px 30px;
+            margin-top: 12px;
+        }
+
+        .ejercicios.tres {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .ejercicio {
+            padding: 4px 0;
+        }
+
+        .volver {
+            display: inline-block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #1f3c5b;
+            font-weight: bold;
+        }
+
+        .volver:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+
+            .ejercicios,
+            .ejercicios.tres {
+                grid-template-columns: 1fr;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 8px;
+            }
+        }
+    </style>
+<style>
+    .formula { overflow-x: auto; padding: 8px 0; }
+    .tabla-contenedor { overflow-x: auto; margin: 20px 0; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #d8d8d8; padding: 10px 12px; text-align: left; }
+    th { background: #eef5fb; color: #1f3c5b; }
+    .ejercicios > * { min-width: 0; }
+    .diagrama { display: block; width: 100%; max-width: 640px; height: auto; margin: 20px auto; }
+    .indice a { color: #1f3c5b; }
+    li { margin-bottom: 8px; }
+    @media (max-width: 700px) {
+        .ejemplo, .notabox { padding: 14px; }
+        .container { padding: 16px; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Sistemas de Ecuaciones Lineales</h1>
+    <p>Álgebra Lineal I</p>
+</header>
+<nav><a href="../index.html">Inicio del curso</a></nav>
+
+<main class="container">
+    <a class="volver" href="../index.html">← Volver al contenido del curso</a>
+
+    <div class="notabox indice">
+        <div class="notabox-title">Contenido</div>
+        <ol>
+            <li><a href="#rectas">Propiedades de las rectas</a></li>
+            <li><a href="#sistemas-2">Sistemas de dos ecuaciones con dos incógnitas</a></li>
+            <li><a href="#operaciones">Operaciones elementales por filas</a></li>
+            <li><a href="#sistemas-mn">Sistemas de \(m\) ecuaciones con \(n\) incógnitas</a></li>
+            <li><a href="#escalonadas">Matrices escalonadas y eliminación de Gauss</a></li>
+            <li><a href="#sarrus">Regla de Sarrus</a></li>
+            <li><a href="#aplicaciones">Aplicaciones</a></li>
+        </ol>
+    </div>
+
+    <!-- 1. Propiedades de las rectas -->
+    <section id="rectas">
+        <h2>1. Propiedades de las rectas</h2>
+        <p>
+            Una ecuación lineal con dos incógnitas representa una recta
+            cuando sus dos coeficientes no son simultáneamente cero.
+            Recordemos sus propiedades principales.
+        </p>
+        <h3>Pendiente</h3>
+        <p>
+            La pendiente de la recta que pasa por dos puntos
+            \((x_1,y_1)\) y \((x_2,y_2)\), con \(x_1\neq x_2\), es:
+        </p>
+        <div class="formula">
+            \[
+                m=\frac{y_2-y_1}{x_2-x_1}=\frac{\Delta y}{\Delta x}.
+            \]
+        </div>
+        <p>
+            Si \(x_1=x_2\) y \(y_1\neq y_2\), la recta es vertical
+            y su pendiente no está definida.
+        </p>
+        <h3>Ecuaciones de una recta</h3>
+        <p>Toda recta no vertical puede escribirse como:</p>
+        <div class="formula">\[ y=mx+y_0. \]</div>
+        <p>
+            Aquí \(m\) es la pendiente y \((0,y_0)\) es el punto de
+            intersección con el eje \(y\). También puede escribirse como:
+        </p>
+        <div class="formula">
+            \[ ax+by=c,\qquad b\neq0. \]
+            \[
+                y=-\frac{a}{b}x+\frac{c}{b},
+                \qquad m=-\frac{a}{b},\qquad y_0=\frac{c}{b}.
+            \]
+        </div>
+        <div class="notabox">
+            <div class="notabox-title">Paralelismo y perpendicularidad</div>
+            <ul>
+                <li>
+                    Dos rectas distintas no verticales son paralelas si
+                    y solo si tienen la misma pendiente. Dos rectas
+                    verticales distintas también son paralelas.
+                </li>
+                <li>
+                    Dos rectas no verticales son perpendiculares si y
+                    solo si sus pendientes satisfacen \(m_1m_2=-1\).
+                </li>
+                <li>
+                    Las rectas horizontales tienen pendiente cero;
+                    las verticales tienen pendiente indefinida.
+                    Una recta horizontal y una vertical son perpendiculares.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 2. Sistemas de dos ecuaciones -->
+    <section id="sistemas-2">
+        <h2>2. Sistemas de dos ecuaciones con dos incógnitas</h2>
+        <div class="notabox">
+            <div class="notabox-title">Sistema lineal \(2\times2\)</div>
+            <p>Un sistema de dos ecuaciones con dos incógnitas tiene la forma:</p>
+            <div class="formula">
+                \[
+                    \left\{
+                    \begin{aligned}
+                        a_1x+b_1y&=c_1,\\
+                        a_2x+b_2y&=c_2.
+                    \end{aligned}
+                    \right.
+                \]
+            </div>
+            <p>
+                Los coeficientes \(a_1,a_2,b_1,b_2\) y los términos
+                independientes \(c_1,c_2\) son números reales dados.
+                Una solución es un par \((x,y)\) que satisface
+                simultáneamente ambas ecuaciones.
+            </p>
+        </div>
+
+        <div class="ejemplo">
+            <div class="ejemplo-title">Ejemplo 1. Sistemas \(2\times2\)</div>
+            <p>Considere los siguientes sistemas:</p>
+            <div class="ejercicios tres">
+                <div class="ejercicio">
+                    <strong>(a)</strong>
+                    <div class="formula">
+                        \[
+                            \left\{\begin{aligned}
+                                2x+3y&=14,\\4x-3y&=10.
+                            \end{aligned}\right.
+                        \]
+                    </div>
+                </div>
+                <div class="ejercicio">
+                    <strong>(b)</strong>
+                    <div class="formula">
+                        \[
+                            \left\{\begin{aligned}
+                                -x+2y&=3,\\2x-4y&=-6.
+                            \end{aligned}\right.
+                        \]
+                    </div>
+                </div>
+                <div class="ejercicio">
+                    <strong>(c)</strong>
+                    <div class="formula">
+                        \[
+                            \left\{\begin{aligned}
+                                3x-y&=5,\\9x-3y&=21.
+                            \end{aligned}\right.
+                        \]
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Propiedades de la igualdad</h3>
+        <p>Para resolver sistemas usamos, entre otras, estas propiedades:</p>
+        <ul>
+            <li><strong>Propiedad A:</strong> si \(a=b\) y \(c=d\), entonces \(a+c=b+d\).</li>
+            <li><strong>Propiedad B:</strong> si \(a=b\) y \(k\) es real, entonces \(ka=kb\).</li>
+        </ul>
+        <h3>Número de soluciones</h3>
+        <p>Definimos el determinante de los coeficientes como:</p>
+        <div class="formula">
+            \[
+                \Delta=\begin{vmatrix}a_1&b_1\\a_2&b_2\end{vmatrix}
+                =a_1b_2-a_2b_1.
+            \]
+        </div>
+        <div class="notabox">
+            <div class="notabox-title">Clasificación de los sistemas</div>
+            <ul>
+                <li>Si \(\Delta\neq0\), hay <strong>una única solución</strong>.</li>
+                <li>
+                    Si \(\Delta=0\), puede haber <strong>infinitas soluciones</strong>
+                    o <strong>ninguna solución</strong>. La eliminación permite
+                    distinguir estos casos.
+                </li>
+            </ul>
+            <p>
+                Cuando ambas ecuaciones representan rectas, los tres
+                casos corresponden a rectas que se cortan en un punto,
+                rectas coincidentes y rectas paralelas distintas.
+            </p>
+        </div>
+    </section>
+
+    <!-- 3. Operaciones elementales -->
+    <section id="operaciones">
+        <h2>3. Operaciones elementales por filas</h2>
+        <p>
+            Estas operaciones transforman un sistema en otro equivalente,
+            con el mismo conjunto de soluciones. \(F_i\) representa la fila \(i\).
+        </p>
+        <div class="tabla-contenedor">
+            <table>
+                <thead><tr><th scope="col">Operación</th><th scope="col">Notación</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>Multiplicar una fila por un número distinto de cero.</td>
+                        <td>\(F_i\leftarrow kF_i,\quad k\neq0\)</td>
+                    </tr>
+                    <tr>
+                        <td>Sumar a una fila un múltiplo de otra fila.</td>
+                        <td>\(F_j\leftarrow F_j+kF_i,\quad i\neq j\)</td>
+                    </tr>
+                    <tr>
+                        <td>Intercambiar dos filas.</td>
+                        <td>\(F_i\leftrightarrow F_j\)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="ejemplo">
+            <div class="ejemplo-title">Ejemplo 2. Eliminación gaussiana</div>
+            <p>Resuelva los siguientes sistemas mediante eliminación gaussiana:</p>
+            <div class="ejercicios">
+                <div class="ejercicio">
+                    <strong>(a)</strong>
+                    <div class="formula">
+                        \[
+                            \left\{\begin{aligned}
+                                2x+3y&=14,\\4x-3y&=10.
+                            \end{aligned}\right.
+                        \]
+                    </div>
+                </div>
+                <div class="ejercicio">
+                    <strong>(b)</strong>
+                    <div class="formula">
+                        \[
+                            \left\{\begin{aligned}
+                                2x+3y&=8,\\x-2y&=-3.
+                            \end{aligned}\right.
+                        \]
+                    </div>
+                </div>
+                <div class="ejercicio">
+                    <strong>(c)</strong>
+                    <div class="formula">
+                        \[
+                            \left\{\begin{aligned}
+                                -3x+y&=4,\\9x-3y&=24.
+                            \end{aligned}\right.
+                        \]
+                    </div>
+                </div>
+                <div class="ejercicio">
+                    <strong>(d)</strong>
+                    <div class="formula">
+                        \[
+                            \left\{\begin{aligned}
+                                -x+2y&=2,\\2x-4y&=-4.
+                            \end{aligned}\right.
+                        \]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Sistemas generales -->
+    <section id="sistemas-mn">
+        <h2>4. Sistemas de \(m\) ecuaciones con \(n\) incógnitas</h2>
+        <p>Un sistema lineal \(m\times n\) tiene la forma:</p>
+        <div class="formula">
+            \[
+                \left\{\begin{aligned}
+                    a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n&=b_1,\\
+                    a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n&=b_2,\\
+                    &\vdots\\
+                    a_{m1}x_1+a_{m2}x_2+\cdots+a_{mn}x_n&=b_m.
+                \end{aligned}\right.
+            \]
+        </div>
+        <p>
+            Los \(a_{ij}\) son los coeficientes y los \(b_i\) son los
+            términos independientes. Todos son números reales dados.
+        </p>
+        <div class="notabox">
+            <div class="notabox-title">Matriz aumentada</div>
+            <p>Organizamos los coeficientes y términos independientes así:</p>
+            <div class="formula">
+                \[
+                    [A\mid b]=\left[
+                    \begin{array}{cccc|c}
+                        a_{11}&a_{12}&\cdots&a_{1n}&b_1\\
+                        a_{21}&a_{22}&\cdots&a_{2n}&b_2\\
+                        \vdots&\vdots&\ddots&\vdots&\vdots\\
+                        a_{m1}&a_{m2}&\cdots&a_{mn}&b_m
+                    \end{array}\right].
+                \]
+            </div>
+        </div>
+        <div class="ejemplo" id="ejemplo-sistemas">
+            <div class="ejemplo-title">Ejemplo 3. Sistemas \(m\times n\)</div>
+            <p>
+                Resuelva mediante eliminación de Gauss los siguientes
+                sistemas, usando las definiciones de la siguiente sección.
+            </p>
+            <div class="ejercicios">
+                <div class="ejercicio">
+                    <strong>(a) Sistema \(3\times3\)</strong>
+                    <div class="formula">
+                        \[
+                            \left\{\begin{aligned}
+                                2x+4y+6z&=-2,\\
+                                2x+7y-3z&=4,\\
+                                3x+8y+4z&=-1.
+                            \end{aligned}\right.
+                        \]
+                    </div>
+                </div>
+                <div class="ejercicio">
+                    <strong>(b) Sistema \(3\times4\)</strong>
+                    <div class="formula">
+                        \[
+                            \left\{\begin{aligned}
+                                x+2y+5z+5w&=-3,\\
+                                x+y+3z+4w&=-1,\\
+                                x-y-z+2w&=1.
+                            \end{aligned}\right.
+                        \]
+                    </div>
+                </div>
+                <div class="ejercicio">
+                    <strong>(c) Sistema \(4\times4\)</strong>
+                    <div class="formula">
+                        \[
+                            \left\{\begin{aligned}
+                                x+y+5w&=1,\\
+                                x+z+2w&=1,\\
+                                x-3y+4z-7w&=1,\\
+                                y-z+3w&=0.
+                            \end{aligned}\right.
+                        \]
+                    </div>
+                </div>
+                <div class="ejercicio">
+                    <strong>(d) Sistema \(3\times3\)</strong>
+                    <div class="formula">
+                        \[
+                            \left\{\begin{aligned}
+                                x+2y-z&=1,\\
+                                2x+5y+z&=2,\\
+                                3x+5y-6z&=4.
+                            \end{aligned}\right.
+                        \]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Matrices escalonadas -->
+    <section id="escalonadas">
+        <h2>5. Matrices escalonadas y eliminación de Gauss</h2>
+        <div class="notabox">
+            <div class="notabox-title">Forma escalonada</div>
+            <p>Una matriz está en forma escalonada si:</p>
+            <ol>
+                <li>Las filas nulas se encuentran debajo de las filas no nulas.</li>
+                <li>
+                    El primer elemento no nulo de cada fila no nula,
+                    llamado <strong>pivote</strong>, está a la derecha
+                    del pivote de la fila anterior.
+                </li>
+                <li>Debajo de cada pivote todos los elementos son cero.</li>
+            </ol>
+            <p>
+                En estos apuntes normalizaremos los pivotes para que
+                valgan 1, como en las diapositivas. Se llaman entonces
+                <strong>unos principales</strong>. En la definición
+                general de forma escalonada no es obligatorio que valgan 1.
+            </p>
+        </div>
+        <p>Las siguientes matrices están en forma escalonada:</p>
+        <div class="formula">
+            \[
+                \begin{bmatrix}
+                    1&2&3&4\\0&1&5&6\\0&0&0&0
+                \end{bmatrix}.
+            \]
+        </div>
+        <div class="formula">
+            \[
+                \begin{bmatrix}
+                    1&2&1&0&4\\0&0&1&6&0\\0&0&0&1&4
+                \end{bmatrix}.
+            \]
+        </div>
+        <div class="formula">
+            \[
+                \begin{bmatrix}
+                    0&1&2&0&4\\0&0&1&2&0\\0&0&0&0&1
+                \end{bmatrix}.
+            \]
+        </div>
+        <div class="notabox">
+            <div class="notabox-title">Forma escalonada reducida</div>
+            <p>
+                Una matriz está en forma escalonada reducida si está
+                en forma escalonada, todos sus pivotes son 1 y cada
+                pivote es el único elemento no nulo de su columna.
+                Hay ceros tanto por encima como por debajo de cada
+                uno principal.
+            </p>
+        </div>
+        <h3>Procedimiento de eliminación de Gauss</h3>
+        <ol>
+            <li>Escriba la matriz aumentada del sistema.</li>
+            <li>Aplique operaciones elementales hasta obtener una forma escalonada.</li>
+            <li>
+                Si aparece una fila \([\,0\ \cdots\ 0\mid c\,]\), con
+                \(c\neq0\), el sistema no tiene solución.
+            </li>
+            <li>
+                Si el sistema es compatible, use sustitución hacia atrás.
+                Si hay variables sin pivote, expréselas mediante parámetros.
+            </li>
+        </ol>
+        <p>
+            Si se continúa hasta obtener la forma escalonada reducida,
+            el procedimiento se llama <strong>eliminación de Gauss-Jordan</strong>.
+        </p>
+    </section>
+
+    <!-- 6. Determinantes -->
+    <section id="sarrus">
+        <h2>6. Regla de Sarrus</h2>
+        <p>
+            La regla de Sarrus permite calcular el determinante de una
+            matriz \(3\times3\). Se repiten a la derecha las dos primeras columnas:
+        </p>
+        <div class="formula">
+            \[
+                \begin{array}{ccc|cc}
+                    a_{11}&a_{12}&a_{13}&a_{11}&a_{12}\\
+                    a_{21}&a_{22}&a_{23}&a_{21}&a_{22}\\
+                    a_{31}&a_{32}&a_{33}&a_{31}&a_{32}
+                \end{array}
+            \]
+        </div>
+        <p>
+            Se suman los tres productos de las diagonales descendentes
+            hacia la derecha y se restan los tres productos de las
+            diagonales ascendentes hacia la derecha:
+        </p>
+        <div class="formula">
+            \[
+                \begin{aligned}
+                    \Delta={}&a_{11}a_{22}a_{33}
+                             +a_{12}a_{23}a_{31}
+                             +a_{13}a_{21}a_{32}\\
+                            &-a_{13}a_{22}a_{31}
+                             -a_{11}a_{23}a_{32}
+                             -a_{12}a_{21}a_{33}.
+                \end{aligned}
+            \]
+        </div>
+        <div class="notabox">
+            <div class="notabox-title">Determinante y soluciones</div>
+            <p>
+                Si el determinante de la matriz de coeficientes de un
+                sistema \(3\times3\) es distinto de cero, hay una única
+                solución. Si es cero, puede no haber solución o haber
+                infinitas soluciones.
+            </p>
+            <p>La regla de Sarrus solo se aplica a matrices \(3\times3\).</p>
+        </div>
+        <div class="ejemplo">
+            <div class="ejemplo-title">Ejemplo 4. Cálculo de determinantes</div>
+            <p>
+                Calcule mediante la regla de Sarrus el determinante de
+                la matriz de coeficientes de cada sistema \(3\times3\)
+                del Ejemplo 3, incisos (a) y (d).
+            </p>
+        </div>
+    </section>
+
+    <!-- 7. Aplicaciones -->
+    <section id="aplicaciones">
+        <h2>7. Aplicaciones</h2>
+        <div class="ejemplo">
+            <div class="ejemplo-title">Ejemplo 5. Distribución de una inversión</div>
+            <p>
+                Una empresa dispone de $1.200.000 para invertir en
+                cuatro proyectos: A, B, C y D. Las tasas de rentabilidad
+                esperadas son del 8 %, 10 %, 7 % y 9 %, respectivamente.
+            </p>
+            <p>Se establecen las siguientes condiciones:</p>
+            <ul>
+                <li>
+                    La inversión total en B y C debe ser de $400.000,
+                    por considerarse los proyectos de mayor riesgo.
+                </li>
+                <li>La inversión en A debe ser igual a la inversión en C.</li>
+                <li>Se desea obtener un interés total de $100.000.</li>
+            </ul>
+            <p><strong>¿Cuánto debe invertirse en cada proyecto?</strong></p>
+        </div>
+
+        <div class="ejemplo">
+            <div class="ejemplo-title">Ejemplo 6. Uso de recursos de producción</div>
+            <p>
+                Una empresa produce tres productos, A, B y C, usando
+                horas de trabajo, materia prima y presupuesto.
+                La tabla indica el consumo por unidad y la disponibilidad total.
+            </p>
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Recurso</th><th scope="col">Producto A</th>
+                            <th scope="col">Producto B</th><th scope="col">Producto C</th>
+                            <th scope="col">Disponible</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Horas de trabajo</th>
+                            <td>2</td><td>1</td><td>1</td><td>99</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Materia prima</th>
+                            <td>1</td><td>2</td><td>1</td><td>79</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Presupuesto ($)</th>
+                            <td>3</td><td>2</td><td>4</td><td>198</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                <strong>Halle la cantidad de cada producto que debe fabricarse
+                para utilizar por completo los recursos disponibles.</strong>
+            </p>
+        </div>
+
+        <div class="ejemplo">
+            <div class="ejemplo-title">Ejemplo 7. Producción y ganancia</div>
+            <p>
+                Una empresa produce cuatro tipos de artículos.
+                Sus costos variables y precios de venta por unidad son:
+            </p>
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Costo variable unitario ($)</th>
+                            <th scope="col">Precio de venta unitario ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>1</td><td>1,05</td></tr>
+                        <tr><td>2</td><td>1,5</td><td>2,1353</td></tr>
+                        <tr><td>3</td><td>2</td><td>2,08</td></tr>
+                        <tr><td>4</td><td>3</td><td>4,9666</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                Además, se incurre en un costo fijo diario de $150.000.
+                La capacidad máxima es de 450.000 artículos diarios.
+                La cantidad de artículos de tipo 1 debe ser la mitad
+                de la cantidad de tipo 2 y la tercera parte de la cantidad de tipo 3.
+            </p>
+            <p>
+                <strong>¿Cuántos artículos de cada tipo deben producirse
+                diariamente, trabajando a máxima capacidad, para obtener
+                una ganancia aproximada del 30 % de los costos totales
+                de producción?</strong>
+            </p>
+            <p>
+                Considere que se vende toda la producción. Recuerde que la
+                ganancia es el ingreso por ventas menos el costo total.
+            </p>
+        </div>
+
+        <div class="ejemplo">
+            <div class="ejemplo-title">Ejemplo 8. Distribución de calor</div>
+            <p>
+                Una placa metálica se divide en cuatro regiones con
+                temperaturas desconocidas \(T_1,T_2,T_3,T_4\).
+                Las conexiones térmicas son:
+            </p>
+            <ul>
+                <li>
+                    \(T_1\) está conectada con \(T_2\), \(T_3\)
+                    y una fuente caliente a \(100\,^\circ\mathrm{C}\).
+                </li>
+                <li>\(T_2\) está conectada con \(T_1\) y \(T_4\).</li>
+                <li>\(T_3\) está conectada con \(T_1\) y \(T_4\).</li>
+                <li>
+                    \(T_4\) está conectada con \(T_2\), \(T_3\)
+                    y una fuente fría a \(0\,^\circ\mathrm{C}\).
+                </li>
+            </ul>
+            <p>
+                Para precisar el modelo, suponga equilibrio térmico,
+                igual conductancia en todas las conexiones y ausencia
+                de otras fuentes o pérdidas de calor. Así, la temperatura
+                de cada región es el promedio de las temperaturas de
+                sus conexiones, incluidas las fuentes cuando corresponda.
+            </p>
+            <p><strong>Plantee el sistema y halle las cuatro temperaturas.</strong></p>
+        </div>
+
+        <div class="ejemplo">
+            <div class="ejemplo-title">Ejemplo 9. Flujo de tráfico</div>
+            <p>
+                En una red vial, \(f_1,f_2,f_3,f_4\) representan flujos
+                de vehículos por hora. Las flechas indican el sentido
+                de circulación. Los nodos se identifican como A, B, C y D.
+            </p>
+            <!-- Diagrama vectorial: no requiere imágenes externas -->
+            <svg class="diagrama" viewBox="0 0 640 430"
+                 xmlns="http://www.w3.org/2000/svg"
+                 role="img" aria-labelledby="trafico-titulo trafico-descripcion">
+                <title id="trafico-titulo">Red de tráfico con cuatro intersecciones</title>
+                <desc id="trafico-descripcion">
+                    A arriba a la izquierda, B arriba a la derecha,
+                    C abajo a la derecha y D abajo a la izquierda.
+                    f1 va de A a B; f2 de D a A; f3 de B a C; f4 de C a D.
+                    En A entran 100 desde la izquierda y salen 40 hacia arriba.
+                    En B entran 40 desde arriba y salen 20 hacia la derecha.
+                    En C entran 30 desde la derecha y salen 140 hacia abajo.
+                    En D entran 50 desde abajo y salen 20 hacia la izquierda.
+                </desc>
+                <defs>
+                    <marker id="flecha-trafico" markerWidth="8" markerHeight="8"
+                            refX="7" refY="4" orient="auto">
+                        <path d="M0,0 L8,4 L0,8 Z" fill="#1f3c5b"/>
+                    </marker>
+                </defs>
+                <g fill="none" stroke="#1f3c5b" stroke-width="2.5"
+                   marker-end="url(#flecha-trafico)">
+                    <path d="M35 120 H190"/>
+                    <path d="M200 110 V30"/>
+                    <path d="M210 120 H430"/>
+                    <path d="M440 30 V110"/>
+                    <path d="M450 120 H605"/>
+                    <path d="M440 130 V290"/>
+                    <path d="M605 300 H450"/>
+                    <path d="M440 310 V400"/>
+                    <path d="M430 300 H210"/>
+                    <path d="M200 400 V310"/>
+                    <path d="M190 300 H35"/>
+                    <path d="M200 290 V130"/>
+                </g>
+                <g fill="#1f3c5b">
+                    <circle cx="200" cy="120" r="5"/>
+                    <circle cx="440" cy="120" r="5"/>
+                    <circle cx="440" cy="300" r="5"/>
+                    <circle cx="200" cy="300" r="5"/>
+                </g>
+                <g font-family="Arial, sans-serif" font-size="19" fill="#222"
+                   text-anchor="middle">
+                    <text x="100" y="105">100</text>
+                    <text x="175" y="70">40</text>
+                    <text x="320" y="106">f₁</text>
+                    <text x="468" y="70">40</text>
+                    <text x="540" y="105">20</text>
+                    <text x="464" y="218">f₃</text>
+                    <text x="540" y="286">30</text>
+                    <text x="473" y="370">140</text>
+                    <text x="320" y="285">f₄</text>
+                    <text x="171" y="370">50</text>
+                    <text x="100" y="285">20</text>
+                    <text x="174" y="218">f₂</text>
+                </g>
+                <g font-family="Arial, sans-serif" font-size="18" font-weight="bold"
+                   fill="#1f3c5b">
+                    <text x="213" y="148">A</text>
+                    <text x="411" y="148">B</text>
+                    <text x="411" y="328">C</text>
+                    <text x="213" y="328">D</text>
+                </g>
+            </svg>
+            <p>
+                Use el principio de conservación: en cada intersección,
+                el flujo total que entra es igual al flujo total que sale.
+                Todos los flujos deben ser no negativos.
+            </p>
+            <ol>
+                <li>Plantee el sistema y determine los flujos posibles.</li>
+                <li>¿Es posible cortar el flujo \(f_4\) sin alterar los flujos externos?</li>
+                <li>
+                    Si \(f_4=50\), ¿en qué nodo colocaría una publicidad?
+                    Justifique usando como criterio el mayor flujo total
+                    de vehículos que entra en la intersección.
+                </li>
+            </ol>
+        </div>
+    </section>
+</main>
+<footer>Álgebra Lineal I</footer>
+</body>
+</html>
+
