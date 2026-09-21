@@ -235,8 +235,8 @@
         <h3>Solución</h3>
 
         <p>
-            Como las potencias de \(i\) se repiten cada cuatro exponentes, para simplificar una potencia de \(i\) mayor que cuatro, dividimos el
-            exponente entre 4 y usamos el residuo.
+            Como las potencias de \(i\) se repiten cada cuatro exponentes se puede dividir el
+            exponente entre 4 y usar el residuo para simplificar la potencia 
         </p>
 
           <div class="ejercicio">
@@ -329,25 +329,56 @@
 
 
     <!-- Ejemplo 2 -->
+<div class="ejemplo">
 
-    <div class="ejemplo">
+    <div class="ejemplo-title">Ejemplo 2</div>
 
-        <div class="ejemplo-title">Ejemplo 2</div>
+    <p>Escriba lo siguiente en la forma \(a+bi\).</p>
 
-        <p>
-            Escriba lo siguiente en la forma \(a+bi\).
-        </p>
-
-        <div class="ejercicios tres">
-            <div class="ejercicio">(a) \(5+\sqrt{-16}\)</div>
-            <div class="ejercicio">(b) \(-5\)</div>
-            <div class="ejercicio">
-                (c) \(\displaystyle\frac{6-\sqrt{-3}}{2}\)
-            </div>
+    <div class="ejercicios tres">
+        <div class="ejercicio">(a) \(5+\sqrt{-16}\)</div>
+        <div class="ejercicio">(b) \(-5\)</div>
+        <div class="ejercicio">
+            (c) \(\displaystyle\frac{6-\sqrt{-3}}{2}\)
         </div>
-
     </div>
 
+    <div class="solucion">
+        <h3>Solución</h3>
+
+        <p>
+            Para un número real positivo \(r\), la raíz cuadrada
+            principal de \(-r\) es \(\sqrt{-r}=i\sqrt{r}\).
+        </p>
+
+        <p><strong>(a)</strong> Como \(\sqrt{-16}=4i\):</p>
+
+        \[
+            5+\sqrt{-16}=\boxed{5+4i}.
+        \]
+
+        <p>
+            <strong>(b)</strong> Un número real tiene parte
+            imaginaria igual a cero:
+        </p>
+
+        \[
+            -5=\boxed{-5+0i}.
+        \]
+
+        <p>
+            <strong>(c)</strong> Sustituimos \(\sqrt{-3}=\sqrt{3}\,i\)
+            y dividimos cada término entre 2:
+        </p>
+
+        \[
+            \frac{6-\sqrt{-3}}{2}
+            =\frac{6-\sqrt{3}\,i}{2}
+            =\boxed{3-\frac{\sqrt{3}}{2}i}.
+        \]
+    </div>
+
+</div>
 
     <h2>2. Operaciones con números complejos</h2>
 
@@ -377,56 +408,132 @@
     \]
 
 
-    <!-- Ejemplo 3 -->
+<!-- Ejemplo 3: suma, resta y multiplicación -->
+<div class="ejemplo">
 
-    <div class="ejemplo">
+    <div class="ejemplo-title">Ejemplo 3</div>
 
-        <div class="ejemplo-title">Ejemplo 3</div>
+    <p>Realice las operaciones.</p>
 
-        <p>Realice las operaciones.</p>
-
-        <div class="ejercicios">
-            <div class="ejercicio">
-                (a) \((3+4i)+(5-6i)\)
-            </div>
-
-            <div class="ejercicio">
-                (b) \((6+9i)-(3-2i)\)
-            </div>
+    <div class="ejercicios">
+        <div class="ejercicio">
+            (a) \((3+4i)+(5-6i)\)
         </div>
 
-    </div>
-
-
-    <!-- Ejemplo 4 -->
-
-    <div class="ejemplo">
-
-        <div class="ejemplo-title">Ejemplo 4</div>
-
-        <p>Realice las operaciones.</p>
-
-        <div class="ejercicios">
-
-            <div class="ejercicio">
-                (a) \((3+2i)(4-5i)\)
-            </div>
-
-            <div class="ejercicio">
-                (b) \((3-7i)^2\)
-            </div>
-
-            <div class="ejercicio">
-                (c) \((5-2i)(5+2i)\)
-            </div>
-
-            <div class="ejercicio">
-                (d) \((3+i)^2-2(3+i)\)
-            </div>
-
+        <div class="ejercicio">
+            (b) \((6+9i)-(3-2i)\)
         </div>
 
+        <div class="ejercicio">
+            (c) \((3+2i)(4-5i)\)
+        </div>
+
+        <div class="ejercicio">
+            (d) \((3-7i)^2\)
+        </div>
+
+        <div class="ejercicio">
+            (e) \((5-2i)(5+2i)\)
+        </div>
+
+        <div class="ejercicio">
+            (f) \((3+i)^2-2(3+i)\)
+        </div>
     </div>
+
+    <div class="solucion">
+        <h3>Solución</h3>
+
+        <p>
+            Para sumar o restar, agrupamos las partes reales y las
+            imaginarias por separado. Para multiplicar, desarrollamos
+            los productos y usamos \(i^2=-1\).
+        </p>
+
+        <p><strong>(a)</strong> Sumamos los términos semejantes:</p>
+
+        \[
+            \begin{aligned}
+                (3+4i)+(5-6i)
+                &=(3+5)+(4-6)i\\
+                &=\boxed{8-2i}.
+            \end{aligned}
+        \]
+
+        <p>
+            <strong>(b)</strong> Distribuimos el signo menos
+            y agrupamos:
+        </p>
+
+        \[
+            \begin{aligned}
+                (6+9i)-(3-2i)
+                &=6+9i-3+2i\\
+                &=(6-3)+(9+2)i\\
+                &=\boxed{3+11i}.
+            \end{aligned}
+        \]
+
+        <p>
+            <strong>(c)</strong> Aplicamos la propiedad distributiva:
+        </p>
+
+        \[
+            \begin{aligned}
+                (3+2i)(4-5i)
+                &=12-15i+8i-10i^2\\
+                &=12-7i+10\\
+                &=\boxed{22-7i}.
+            \end{aligned}
+        \]
+
+        <p>
+            <strong>(d)</strong> Usamos
+            \((x-y)^2=x^2-2xy+y^2\):
+        </p>
+
+        \[
+            \begin{aligned}
+                (3-7i)^2
+                &=3^2-2(3)(7i)+(7i)^2\\
+                &=9-42i+49i^2\\
+                &=9-42i-49\\
+                &=\boxed{-40-42i}.
+            \end{aligned}
+        \]
+
+        <p>
+            <strong>(e)</strong> Usamos
+            \((x-y)(x+y)=x^2-y^2\):
+        </p>
+
+        \[
+            \begin{aligned}
+                (5-2i)(5+2i)
+                &=5^2-(2i)^2\\
+                &=25-4i^2\\
+                &=25+4\\
+                &=\boxed{29}.
+            \end{aligned}
+        \]
+
+        <p>
+            <strong>(f)</strong> Desarrollamos el cuadrado
+            y distribuimos el factor \(-2\):
+        </p>
+
+        \[
+            \begin{aligned}
+                (3+i)^2-2(3+i)
+                &=9+6i+i^2-6-2i\\
+                &=9+6i-1-6-2i\\
+                &=(9-1-6)+(6-2)i\\
+                &=\boxed{2+4i}.
+            \end{aligned}
+        \]
+    </div>
+
+</div>
 
 
     <h2>3. Conjugado complejo</h2>
@@ -490,30 +597,61 @@
     </p>
 
 
-    <!-- Ejemplo 5 -->
+    <!-- Ejemplo 4 -->
+<div class="ejemplo">
 
-    <div class="ejemplo">
+    <div class="ejemplo-title">Ejemplo 5</div>
 
-        <div class="ejemplo-title">Ejemplo 5</div>
+    <p>Exprese lo siguiente en la forma \(a+bi\).</p>
 
-        <p>
-            Exprese lo siguiente en la forma \(a+bi\).
-        </p>
-
-        <div class="ejercicios">
-
-            <div class="ejercicio">
-                (a) \(\displaystyle\frac{4+3i}{2i}\)
-            </div>
-
-            <div class="ejercicio">
-                (b) \(\displaystyle\frac{7-4i}{2+i}\)
-            </div>
-
+    <div class="ejercicios">
+        <div class="ejercicio">
+            (a) \(\displaystyle\frac{4+3i}{2i}\)
         </div>
-
+        <div class="ejercicio">
+            (b) \(\displaystyle\frac{7-4i}{2+i}\)
+        </div>
     </div>
 
+    <div class="solucion">
+        <h3>Solución</h3>
+
+        <p>
+            Multiplicamos el numerador y el denominador por
+            el conjugado del denominador. Así obtenemos
+            un denominador real sin cambiar el valor del cociente.
+        </p>
+
+        <p>
+            <strong>(a)</strong> El conjugado de \(2i\) es \(-2i\):
+        </p>
+
+        \[
+            \begin{aligned}
+                \frac{4+3i}{2i}
+                &=\frac{(4+3i)(-2i)}{(2i)(-2i)}\\
+                &=\frac{-8i-6i^2}{-4i^2}\\
+                &=\frac{6-8i}{4}\\
+                &=\boxed{\frac{3}{2}-2i}.
+            \end{aligned}
+        \]
+
+        <p>
+            <strong>(b)</strong> El conjugado de \(2+i\) es \(2-i\):
+        </p>
+
+        \[
+            \begin{aligned}
+                \frac{7-4i}{2+i}
+                &=\frac{(7-4i)(2-i)}{(2+i)(2-i)}\\
+                &=\frac{14-7i-8i+4i^2}{4-i^2}\\
+                &=\frac{10-15i}{5}\\
+                &=\boxed{2-3i}.
+            \end{aligned}
+        \]
+    </div>
+
+</div>
 </main>
 
 
