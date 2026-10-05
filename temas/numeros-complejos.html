@@ -381,10 +381,9 @@
     <h2>2. Operaciones con números complejos</h2>
 
     <p>
-       La suma y la multiplicación de números complejos son relativamente sencillas: se eliminan los paréntesis aplicando las reglas algebraicas usuales y se reducen los términos semejantes. En la multiplicación se debe tener en cuenta que \(i^2=-1\).
-    </p>
+       La suma y la multiplicación de números complejos son relativamente sencillas: se eliminan los paréntesis aplicando las reglas algebraicas usuales y se reducen los términos semejantes.
 
-
+<!
     <h3>Suma y resta</h3>
 
     \[
@@ -403,7 +402,7 @@
         &=ac-bd+(ad+bc)i.
     \end{aligned}
     \]
-
+>
 
 <!-- Ejemplo 3: suma, resta y multiplicación -->
 <div class="ejemplo">
@@ -422,112 +421,70 @@
         </div>
 
         <div class="ejercicio">
-            (c) \((3+2i)(4-5i)\)
+            (c) 2i(3+5i)
         </div>
 
-        <div class="ejercicio">
-            (d) \((3-7i)^2\)
+       <div class="ejercicio">
+            (d)  \((3+2i)(4-5i)\)
         </div>
 
-        <div class="ejercicio">
-            (e) \((5-2i)(5+2i)\)
-        </div>
-
-        <div class="ejercicio">
-            (f) \((3+i)^2-2(3+i)\)
-        </div>
     </div>
 
     <div class="solucion">
         <h3>Solución</h3>
 
-        <p>
-            Para sumar o restar, agrupamos las partes reales y las
-            imaginarias por separado. Para multiplicar, desarrollamos
-            los productos y usamos \(i^2=-1\).
-        </p>
 
-        <p><strong>(a)</strong> Sumamos los términos semejantes:</p>
+
+        <p><strong>(a)</strong> Elimamos los parentesis y reducimos los términos semejantes:</p>
 
         \[
             \begin{aligned}
                 (3+4i)+(5-6i)
-                &=(3+5)+(4-6)i\\
-                &=\boxed{8-2i}.
+                &=3+4i+5-6i\\
+                &=8-2i.
             \end{aligned}
         \]
 
         <p>
-            <strong>(b)</strong> Distribuimos el signo menos
-            y agrupamos:
+            <strong>(b)</strong>Elimamos los parentesis y reducimos los términos semejantes. Como el segundo paréntesis va precedido
+del signo \(−\) lo suprimimos cambiando el signo a las cantidades que se hallan dentro
         </p>
 
         \[
             \begin{aligned}
                 (6+9i)-(3-2i)
                 &=6+9i-3+2i\\
-                &=(6-3)+(9+2)i\\
-                &=\boxed{3+11i}.
+                &=3+11i.
             \end{aligned}
         \]
 
+         <p>
+            <strong>(c)</strong> En la multiplicación aplicamos la propiedad distributiva y usamos \(i^2=-1\).
+    </p>
+
+        \[
+            \begin{aligned}
+                2i(3+5i)
+                &=6i+10i^2\\
+                &=6i-10\\
+                &=-10+6i.
+            \end{aligned}
+        \]
         <p>
-            <strong>(c)</strong> Aplicamos la propiedad distributiva:
-        </p>
+            <strong>(d)</strong> Aplicamos la propiedad distributiva y usamos \(i^2=-1\).
+    </p>
 
         \[
             \begin{aligned}
                 (3+2i)(4-5i)
+                &3(4-5i)+2i(4-5i)\\
                 &=12-15i+8i-10i^2\\
                 &=12-7i+10\\
-                &=\boxed{22-7i}.
+                &=22-7i.
             \end{aligned}
         \]
 
-        <p>
-            <strong>(d)</strong> Usamos
-            \((x-y)^2=x^2-2xy+y^2\):
-        </p>
 
-        \[
-            \begin{aligned}
-                (3-7i)^2
-                &=3^2-2(3)(7i)+(7i)^2\\
-                &=9-42i+49i^2\\
-                &=9-42i-49\\
-                &=\boxed{-40-42i}.
-            \end{aligned}
-        \]
-
-        <p>
-            <strong>(e)</strong> Usamos
-            \((x-y)(x+y)=x^2-y^2\):
-        </p>
-
-        \[
-            \begin{aligned}
-                (5-2i)(5+2i)
-                &=5^2-(2i)^2\\
-                &=25-4i^2\\
-                &=25+4\\
-                &=\boxed{29}.
-            \end{aligned}
-        \]
-
-        <p>
-            <strong>(f)</strong> Desarrollamos el cuadrado
-            y distribuimos el factor \(-2\):
-        </p>
-
-        \[
-            \begin{aligned}
-                (3+i)^2-2(3+i)
-                &=9+6i+i^2-6-2i\\
-                &=9+6i-1-6-2i\\
-                &=(9-1-6)+(6-2)i\\
-                &=\boxed{2+4i}.
-            \end{aligned}
-        \]
     </div>
 
 </div>
